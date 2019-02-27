@@ -17,12 +17,18 @@ type HelloController struct {
 
 func (c *HelloController) GetHelloHandler() operations.GetHelloWorldHandler {
 	return operations.GetHelloWorldHandlerFunc(func(params operations.GetHelloWorldParams, principal *auth.UserPrincipal) middleware.Responder {
-		return operations.NewHelloWorldOK()
+		return operations.NewGetHelloWorldOK()
+	})
+}
+
+func (c *HelloController) CreateHelloHandler() operations.CreateHelloWorldHandler {
+	return operations.CreateHelloWorldHandlerFunc(func(params operations.CreateHelloWorldParams, principal *auth.UserPrincipal) middleware.Responder {
+		return operations.NewCreateHelloWorldCreated()
 	})
 }
 
 func (c *HelloController) DeleteHelloHandler() operations.DeleteHelloWorldHandler {
 	return operations.DeleteHelloWorldHandlerFunc(func(params operations.DeleteHelloWorldParams, principal *auth.UserPrincipal) middleware.Responder {
-		return operations.NewHelloWorldOK()
+		return operations.NewDeleteHelloWorldOK()
 	})
 }

@@ -42,6 +42,7 @@ func ConfigureAPI(api *operations.API) http.Handler {
 	// Example:
 	// api.APIAuthorizer = security.Authorized()
 	helloHandler := hello.NewHelloController(logger)
+	api.CreateHelloWorldHandler = helloHandler.CreateHelloHandler()
 	api.GetHelloWorldHandler = helloHandler.GetHelloHandler()
 	api.DeleteHelloWorldHandler = helloHandler.DeleteHelloHandler()
 

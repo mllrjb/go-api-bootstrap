@@ -25,16 +25,23 @@ security:
 paths:
   /hello:
     get:
-      summary: Hello World
-      description: Say hello to the world.
+      summary: Get Hello
+      description: Retrieve the current world greeting.
       operationId: getHelloWorld
       parameters:
         - $ref: "#/parameters/authHeader"
       responses:
         200:
           description: ok
-          schema:
-            type: string
+    post:
+      summary: Hello World
+      description: Create a new greeting for the world.
+      operationId: createHelloWorld
+      parameters:
+        - $ref: "#/parameters/authHeader"
+      responses:
+        201:
+          description: ok
     delete:
       summary: Goodbye World
       description: Say goodbye to the world.
@@ -44,8 +51,6 @@ paths:
       responses:
         200:
           description: ok
-          schema:
-            type: string
 parameters:
   authHeader:
     name: "Authorization"
