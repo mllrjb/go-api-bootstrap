@@ -1,0 +1,44 @@
+swagger: "2.0"
+info:
+  description: "Documentation for a LogRhythm platform API"
+  version: "v1.0.0"
+  title: "My LogRhythm API"
+x-servers:
+  - url: "https://localhost:8501/lr-my-api"
+    description: "Local API Gateway (https)"
+schemes:
+  - "http"
+basePath: "/"
+produces:
+  - "application/json"
+consumes:
+  - "application/json"
+host: "localhost:8501"
+securityDefinitions:
+  Bearer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    description: "Authenticate using a JSON Web Token (JWT)."
+security:
+    - Bearer: []
+paths:
+  /hello:
+    get:
+      summary: Hello World
+      description: Say hello to the world.
+      operationId: helloWorld
+      parameters:
+        - $ref: "#/parameters/authHeader"
+      responses:
+        200:
+          description: ok
+          schema:
+            type: string
+parameters:
+  authHeader:
+    name: "Authorization"
+    type: "string"
+    in: "header"
+    description: "Bearer authorization via a JSON Web Token (jwt)"
+    required: true

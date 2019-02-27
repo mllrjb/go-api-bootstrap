@@ -1,0 +1,7 @@
+
+# ignore all generated files *except* the config
+generated/swagger/*
+!generated/swagger/configure.go
+
+# output artifacts
+out
