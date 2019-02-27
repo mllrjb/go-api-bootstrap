@@ -1,26 +1,27 @@
 package main
 
 import (
-	log "github.com/cihub/seelog"
 	"github.com/go-openapi/loads"
 	"github.com/joeshaw/envdecode"
-	"github.com/logrhythm/go-api-bootstrap/generated/swagger"
-	"github.com/logrhythm/go-api-bootstrap/generated/swagger/operations"
+	"github.com/mllrjb/go-api-bootstrap/generated/swagger"
+	"github.com/mllrjb/go-api-bootstrap/generated/swagger/operations"
+	"github.com/uber-go/zap"
 )
 
 type Config struct {
-	BindAddress  string `env:"BIND_ADDRESS,default=127.0.0.1"`
-	HttpPort     int `env:"HTTP_PORT,default=8000"`
+	BindAddress string `env:"BIND_ADDRESS,default=127.0.0.1"`
+	HttpPort    int    `env:"HTTP_PORT,default=8000"`
 }
 
 func main() {
-	defer log.Flush()
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()
 
 	var config Config
 	err := envdecode.StrictDecode(&config)
 	if err != nil {
-		log.Critical(err)
-}
+		logger.Fatal(err)
+	}
 
 	spec, err := loads.Analyzed(swagger.SwaggerJSON, "")
 

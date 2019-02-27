@@ -7,8 +7,8 @@ import (
 	runtime "github.com/go-openapi/runtime"
 	middleware "github.com/go-openapi/runtime/middleware"
 
-	"github.com/logrhythm/go-api-bootstrap/auth"
-	"github.com/logrhythm/go-api-bootstrap/generated/swagger/operations"
+	"github.com/mllrjb/go-api-bootstrap/auth"
+	"github.com/mllrjb/go-api-bootstrap/generated/swagger/operations"
 )
 
 func ConfigureAPI(api *operations.API) http.Handler {

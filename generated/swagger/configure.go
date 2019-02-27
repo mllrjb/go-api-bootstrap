@@ -6,8 +6,8 @@ import (
 	"crypto/tls"
 	"net/http"
 
-	"github.com/logrhythm/go-api-bootstrap/server"
-	"github.com/logrhythm/go-api-bootstrap/generated/swagger/operations"
+	"github.com/mllrjb/go-api-bootstrap/generated/swagger/operations"
+	"github.com/mllrjb/go-api-bootstrap/server"
 )
 
 //go:generate swagger generate server --target ../../go-api-bootstrap --name My --spec ../swagger.yaml --server-package swagger --principal auth.UserPrincipal
