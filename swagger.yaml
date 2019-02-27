@@ -27,7 +27,18 @@ paths:
     get:
       summary: Hello World
       description: Say hello to the world.
-      operationId: helloWorld
+      operationId: getHelloWorld
+      parameters:
+        - $ref: "#/parameters/authHeader"
+      responses:
+        200:
+          description: ok
+          schema:
+            type: string
+    delete:
+      summary: Goodbye World
+      description: Say goodbye to the world.
+      operationId: deleteHelloWorld
       parameters:
         - $ref: "#/parameters/authHeader"
       responses:

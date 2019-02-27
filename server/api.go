@@ -5,13 +5,15 @@ import (
 
 	errors "github.com/go-openapi/errors"
 	runtime "github.com/go-openapi/runtime"
-	middleware "github.com/go-openapi/runtime/middleware"
+	"go.uber.org/zap"
 
 	"github.com/mllrjb/go-api-bootstrap/auth"
 	"github.com/mllrjb/go-api-bootstrap/generated/swagger/operations"
+	"github.com/mllrjb/go-api-bootstrap/hello"
 )
 
 func ConfigureAPI(api *operations.API) http.Handler {
+	logger, _ := zap.NewProduction()
 	// configure the api here
 	api.ServeError = errors.ServeError
 
@@ -27,7 +29,11 @@ func ConfigureAPI(api *operations.API) http.Handler {
 
 	// Applies when the "Authorization" header is set
 	api.BearerAuth = func(token string) (*auth.UserPrincipal, error) {
-		return nil, errors.NotImplemented("api key auth (Bearer) Authorization from header param [Authorization] has not yet been implemented")
+		principal := auth.UserPrincipal{
+			Username: "anonymous",
+			UserID:   -1,
+		}
+		return &principal, nil
 	}
 
 	// Set your custom authorizer if needed. Default one is security.Authorized()
@@ -35,9 +41,9 @@ func ConfigureAPI(api *operations.API) http.Handler {
 	//
 	// Example:
 	// api.APIAuthorizer = security.Authorized()
-	api.HelloWorldHandler = operations.HelloWorldHandlerFunc(func(params operations.HelloWorldParams, principal *auth.UserPrincipal) middleware.Responder {
-		return middleware.NotImplemented("operation .HelloWorld has not yet been implemented")
-	})
+	helloHandler := hello.NewHelloController(logger)
+	api.GetHelloWorldHandler = helloHandler.GetHelloHandler()
+	api.DeleteHelloWorldHandler = helloHandler.DeleteHelloHandler()
 
 	api.ServerShutdown = func() {}
 
