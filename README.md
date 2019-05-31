@@ -8,32 +8,26 @@ This uses go modules, which works fine with go@1.12+ and go-swagger@0.19.0+. Go 
 
 This project uses go modules, which is available in go@1.11+.
 
-Install dependencies with `go get`.
+```
+go mod download
+```
 
-Add a dependency using `go get -u {package}`.
+Add new dependencies using `go get -u {package}`.
 
 ## Generating go-swagger server
 
-To generate the server, first install the `go-swagger` tools:
+https://github.com/go-swagger/go-swagger/issues/1724#issuecomment-469335593
+
+To generate the server, run:
 
 ```
-brew tap go-swagger/go-swagger
-brew install go-swagger
+go generate
 ```
 
-```
-swagger generate server \
-  -A api \
-  -P auth.UserPrincipal \
-  -t generated \
-  --exclude-main \
-  -s swagger \
-  -f swagger.yaml
-```
+Thanks to folks at Netlify for their approach to [go-swagger + modules](
+https://github.com/go-swagger/go-swagger/issues/1724#issuecomment-469335593)!
 
 ## Build the Server
-
-Enable go modules and build the API.
 
 ```
 go build -o out/API
@@ -42,5 +36,5 @@ go build -o out/API
 ## Run the Server
 
 ```
-HTTP_PORT=80 BIND_ADDRESS=0.0.0.0 ./API
+HTTP_PORT=80 BIND_ADDRESS=0.0.0.0 ./out/API
 ```
