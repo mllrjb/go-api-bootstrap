@@ -1,12 +1,11 @@
-## Getting Started
+# Getting Started
 
-`go get github.com/logrhythm/go-api-bootstrap` to clone the bootstrap and get started.
+## Prerequisites
 
-This uses go modules, which works fine with go@1.12+ and go-swagger@0.19.0+. Go modules is automatically enabled if your project source is *outside* `GOPATH`, otherwise you'll need to `export GO111MODULE=on` for it to work.
+* go@1.12+
+* [gobin](https://github.com/myitcv/gobin)
 
 ## Installing Dependencies
-
-This project uses go modules, which is available in go@1.11+.
 
 ```
 go mod download
@@ -23,6 +22,8 @@ To generate the server, run:
 ```
 go generate
 ```
+
+(ignore messages about adding additional packages in your GOPATH)
 
 Thanks to folks at Netlify for their approach to [go-swagger + modules](
 https://github.com/go-swagger/go-swagger/issues/1724#issuecomment-469335593)!
