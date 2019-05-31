@@ -23,7 +23,6 @@ require (
 	github.com/joeshaw/envdecode v0.0.0-20180312135643-c9e015854467
 	github.com/kr/pty v1.1.4 // indirect
 	github.com/mailru/easyjson v0.0.0-20190403194419-1ea4449da983 // indirect
-	github.com/myitcv/gobin v0.0.10 // indirect
 	github.com/rogpeppe/go-internal v1.3.0 // indirect
 	github.com/spf13/viper v1.4.0 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
